@@ -13,7 +13,7 @@ def outer():
         '''
         else_return_phrase = [
             "I Don't know.",
-            'I have only 3 data for red, yellow, green.',
+            'I have only 3 data for red, yellow, and green.',
             'You may know you shoud not enter this argument.',
             "Come on, I'm getting upset.",
             'What the Fuck are you doing?',
@@ -48,16 +48,16 @@ print('\n')
 print('=========================================================================')
 print('              Q#1. What fruits do you have with this color?              ')
 print('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
-print('\n  [color]  :  [fruit] \n')
+print('\n   [color]   :   [fruit] \n')
 for item in color_list:
-    print(' -',item,':',color_to_fruit(item))
+    print(' -','{:9}'.format(item),':',color_to_fruit(item))
 print('\n')
 while 1:
     usercolor = input('type any color you know. (or type "0" to exit):')
     if usercolor == '0':
         break
     else:
-        print(' -',usercolor,':',color_to_fruit(usercolor),'\n')
+        print(' -','{:9}'.format(usercolor),':',color_to_fruit(usercolor),'\n')
 
 
 
@@ -116,9 +116,19 @@ print('2.5 + 3.7 = {}\n2.5 * 3.7 = {}'.format(sum_mul(2.5,3.7)[0],sum_mul(2.5,3.
 print('\n')
 
 input_value = input('type any two numbers with ",". (ex. 2,3): ')
-keylist = input_value.split(',')
-a = int(keylist[0])
-b = int(keylist[1])
+if ',' in input_value:
+    keylist = input_value.split(',')
+    a = int(keylist[0])
+    b = int(keylist[1])
+else:
+    for item in input_value:
+        if not item in '1234567890':
+            print('Invalid Syntax: you can only type number or ','.')
+            input_value = input('type any two numbers with ",". (ex. 2,3): ')
+        else:
+            a = a = int(input_value)
+            b = 0
+
 print('{0} + {1} = {2}\n{0} * {1} = {3}'.format(a,b,sum_mul(a,b)[0],sum_mul(a,b)[1]))
 print('\n')
 
@@ -134,8 +144,8 @@ num_of_arg('sdaf','sdf','s','d','f','sa','sf','a')
 
 # 6
 # 람다함수와 리스트 컴프리헨션을 사용해 한 줄로 구구단의 결과를 갖는 리스트를 생성해본다.
+l = ['{} * {} = {}'.format(x,y,x*y) for x in range(2,10) for y in range(1,10)]
+
 l = [(lambda x,y : '{} * {} = {}'.format(x,y,x*y))(x,y) for x in range(2,10) for y in range(1,10)]
 
 l = [''.join([str(x),' * ',str(y),' = ',str(x*y)]) for x in range(2,10) for y in range(1,10)]
-
-l = ['{} * {} = {}'.format(x,y,x*y) for x in range(2,10) for y in range(1,10)]
