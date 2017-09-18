@@ -67,8 +67,6 @@ def ScripSearch(bible):
             minus_key.append(user_input)
         else:
             print('Invalid value. Try again.')
-    print('+key: ',plus_key)
-    print('-key: ',minus_key)
 
     line = 'Bible_search_line_default'
 
@@ -80,6 +78,7 @@ def ScripSearch(bible):
             elif i == (len(plus_key)-1):
                 if minus_key == []:
                     number_of_line += 1
+                    print(line)
                 else:
                     for k, key in enumerate(minus_key):
                         if key in line:
