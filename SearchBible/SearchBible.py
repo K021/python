@@ -28,9 +28,9 @@ def CapIgnoringScriptSearch(bible):
 
     while line != '':
         line = b.readline()
-        line = line.lower()
+        lower_line = line.lower()
         for i, key in enumerate(plus_key):
-            if key not in line:
+            if key not in lower_line:
                 break
             elif i == (len(plus_key)-1):
                 if minus_key == []:
@@ -38,7 +38,7 @@ def CapIgnoringScriptSearch(bible):
                     print(line)
                 else:
                     for k, key in enumerate(minus_key):
-                        if key in line:
+                        if key in lower_line:
                             break
                         elif k == (len(minus_key)-1):
                             number_of_line += 1
